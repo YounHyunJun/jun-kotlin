@@ -20,3 +20,4 @@ out/
 cargo-installs/
 atlassian-ide-plugin.xml
 deploy/
+lib/

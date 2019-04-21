@@ -1,33 +1,78 @@
 package jun.kotlin.collection
 
-object LinkedList {
+class LinkedList {
 
-    var head: Node? = null
-    var tail: Node? = null
-    var size = 0
+    private var head: Node? = null
+    private var tail: Node? = null
+    private var size = 0
 
     fun size ():Int {
         return size
     }
 
-    fun add (n: Node) {
-        if (head == null && tail == null) {
-            head = n
-            tail = n
+    fun add (node: Node) {
+        if (isEmpty()) {
+            head = node
+            tail = node
+        } else {
+            val temp = head
+            head = node
+            head?.next = temp
+            temp?.prev = node
         }
+    }
 
-        val node = head
-        head = n
-        node?.next = head
-        head?.prev = node
+    private fun isEmpty():Boolean {
+        if (size == 0 || (head == null && tail == null)) {
+            return true
+        }
+        return false
     }
 
     fun get(n: Int): Node? {
+
+        if (isEmpty()) {
+            return null;
+        }
+
+        var cur = head;
+        var i = 0;
+
+        while (cur != null || i <= n) {
+            if (n == i) {
+                return cur;
+            }
+
+            i++;
+            cur = head?.next;
+        }
+
         return null
     }
 
-    fun remove() {
+    fun remove(n: Int): Node? {
+        if (isEmpty()) {
+            return null;
+        }
 
+        val cur = head;
+        val i = 0;
+
+        while (cur != null || i <= n) {
+            if (n == i) {
+                if (cur?.next == null) { // tail
+                    cur?.prev?.next = null;
+                    tail = cur?.prev;
+                    return cur
+                } else {
+                    cur.prev?.next = cur.next;
+                    cur.next?.prev = cur.prev;
+                    return cur;
+                }
+            }
+        }
+
+        return null
     }
 
 }
