@@ -2,11 +2,16 @@ package jun.kotlin.library
 
 class Library {
 
-    fun register(book: Book) {
+    var registry: BookRegistry = BookRegistry()
 
+    fun register(book: Book) {
+        println("책을 추가했습니다.")
+        registry.addBook(book)
     }
 
-    fun borrow(user: User, bookId: String) {
+    fun borrowBook(user: User, bookCode: String) {
+        val borrowValidBook = registry.getBorrowValidBook(bookCode)
+
 
     }
 
