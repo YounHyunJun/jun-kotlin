@@ -1,8 +1,9 @@
 package kotlin.collection
+package kotlin.
 
 class LinkedListTest {
 
-    @org.junit.Before
+    @Before
     fun setUp() {
     }
 
@@ -14,7 +15,7 @@ class LinkedListTest {
     fun size() {
     }
 
-    @org.junit.Test
+    @Test
     fun add() {
     }
 

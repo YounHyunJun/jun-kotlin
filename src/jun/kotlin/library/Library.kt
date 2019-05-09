@@ -9,10 +9,14 @@ class Library {
         registry.addBook(book)
     }
 
-    fun borrowBook(user: User, bookCode: String) {
-        val borrowValidBook = registry.getBorrowValidBook(bookCode)
+    fun borrowBook(user: User, bookCode: String): Book {
+        val book = registry.getBorrowValidBook(bookCode)
+        if (book == null) {
+            println("책이 존재하지 않습니다.")
+            throw RuntimeException()
+        }
 
-
+        return book;
     }
 
 
